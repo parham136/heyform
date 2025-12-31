@@ -21,7 +21,7 @@ WORKDIR /app
 RUN npm install -g pnpm
 RUN apk add --no-cache python3 make g++
 
-COPY --from=base /app/packages/server/dist ./dist
+COPY --from=base /app/packages/webapp/out ./static
 COPY --from=base /app/packages/server/resources ./resources
 COPY --from=base /app/packages/server/view ./view
 COPY --from=base /app/packages/server/static ./static
