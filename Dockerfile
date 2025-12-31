@@ -35,6 +35,9 @@ COPY --from=base $APP_PATH/packages/server/src ./src
 COPY --from=base $APP_PATH/packages/server/tsconfig.json ./tsconfig.json
 COPY --from=base $APP_PATH/packages/server/package.json ./package.json
 
+# THIS LINE IS THE FIX
+COPY --from=base $APP_PATH/packages/webapp/out ./static
+
 RUN pnpm install --prod
 
 EXPOSE 9157
