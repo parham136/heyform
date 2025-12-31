@@ -15,6 +15,8 @@ RUN mkdir -p ./packages/server/static/upload
 RUN pnpm install
 RUN pnpm build:server
 RUN pnpm build:webapp
+RUN pnpm --filter ./packages/webapp export
+
 
 # ================= RUNNER =================
 FROM node:18.20.0-alpine3.19 AS runner
