@@ -36,7 +36,7 @@ COPY --from=base /app/packages/server/tsconfig.json ./tsconfig.json
 COPY --from=base /app/packages/server/package.json ./package.json
 
 # ✅ THIS IS THE IMPORTANT FIX
-COPY --from=base /app/packages/webapp/dist ./static
+COPY --from=base /app/packages/webapp/out ./static
 
 RUN pnpm install --prod
 
