@@ -7,7 +7,7 @@ import * as helmet from 'helmet'
 import { join } from 'path'
 import * as serveStatic from 'serve-static'
 
-import { APP_LISTEN_HOSTNAME, APP_LISTEN_PORT, STATIC_DIR, VIEW_DIR } from '@environments'
+import { APP_LISTEN_HOSTNAME, APP_LISTEN_PORT, VIEW_DIR } from '@environments'
 import { helper, ms } from '@heyform-inc/utils'
 import { Logger, hbs } from '@utils'
 
