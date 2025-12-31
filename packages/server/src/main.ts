@@ -42,8 +42,8 @@ async function bootstrap() {
 
   // Static assets
   app.use(
-    '/static',
-    serveStatic(STATIC_DIR, {
+  '/static',
+  serveStatic(join(process.cwd(), 'static'), {
       maxAge: '30d',
       extensions: ['jpg', 'jpeg', 'bmp', 'webp', 'gif', 'png', 'svg', 'js', 'css'],
       setHeaders: (res, path) => {
