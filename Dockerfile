@@ -1,8 +1,6 @@
 FROM node:18.20.0-alpine3.19 AS base
 
-ARG APP_PATH=/app
-WORKDIR $APP_PATH
-
+WORKDIR /app
 RUN npm install -g pnpm
 RUN apk add --no-cache python3 make g++
 
@@ -15,15 +13,11 @@ RUN mkdir -p ./packages/server/static/upload
 RUN pnpm install
 RUN pnpm build:server
 RUN pnpm build:webapp
-RUN pnpm --filter ./packages/webapp export
-
 
 # ================= RUNNER =================
 FROM node:18.20.0-alpine3.19 AS runner
 
-ARG APP_PATH=/app
-WORKDIR $APP_PATH
-
+WORKDIR /app
 RUN npm install -g pnpm
 RUN apk add --no-cache python3 make g++
 
@@ -35,8 +29,8 @@ COPY --from=base /app/packages/server/src ./src
 COPY --from=base /app/packages/server/tsconfig.json ./tsconfig.json
 COPY --from=base /app/packages/server/package.json ./package.json
 
-# ✅ THIS IS THE IMPORTANT FIX
-COPY --from=base /app/packages/webapp/out ./static
+# ✅ THIS is where the UI comes from
+COPY --from=base /app/packages/webapp/dist ./static
 
 RUN pnpm install --prod
 
